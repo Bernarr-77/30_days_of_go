@@ -9,11 +9,19 @@ func main() {
 	numeroGerado := gerarValor()
 	fmt.Println("Jogo de adivinhação \nchute um numero de 0 a 100")
 	quantidadeTentativas := 0
-	for {
+	for i := 0; i <= 10; i++ {
 		quantidadeTentativas++
 		tentativa := 0
 		fmt.Print("Digite o numero ")
-		fmt.Scan(&tentativa)
+		_, err := fmt.Scan(&tentativa)
+		if err != nil {
+			fmt.Println("Erro: use somente numeros de 0 a 100")
+			continue
+		}
+		if tentativa < 0 || tentativa > 100 {
+			fmt.Println("Erro: use somente numeros de 0 a 100")
+			continue
+		}
 		if tentativa == numeroGerado {
 			fmt.Println("Você acertou em", quantidadeTentativas, "tentativas")
 			break
